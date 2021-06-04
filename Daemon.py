@@ -1,5 +1,6 @@
 
 import os
+import datetime
 from openpyxl import load_workbook
 
 #S/E 300 KVA              jt9DdWAvNK
@@ -18,45 +19,64 @@ from openpyxl import load_workbook
      
 token_dispositivos = ['jt9DdWAvNK','HDjYvFtfZ7','WEbn35kQRk','OuvVsF0vek' ,'eo085EanGe','hmqPNgajnY','gQVSvMsyJt','5Msyx2m8Oh','eBSXNYdrl9','K2HcV0IHY6','SBslPQTJAa','UBpnpsCWB8','UpekFmGS3w']
 
-wb = load_workbook('Tem42661.xlsx')
-print(wb.sheetnames)
+wb = load_workbook('Data(01).xlsx')
+wb.iso_dates = True
 sheet = wb['||Hoja11']
 
-deltaFila=0
 Columna=1
 
-FECHA=sheet.cell(row=4+deltaFila, column=Columna).value
-for token in token_dispositivos:
+MAX_FILAS=sheet.max_row
+print('Filas totales: '+str(MAX_FILAS))
 
-    POT=sheet.cell(row=4+deltaFila, column=1+Columna).value
-    IA=sheet.cell(row=4+deltaFila, column=2+Columna).value
-    IB=sheet.cell(row=4+deltaFila, column=3+Columna).value
-    IC=sheet.cell(row=4+deltaFila, column=4+Columna).value
-    VAB=sheet.cell(row=4+deltaFila, column=5+Columna).value
-    VAC=sheet.cell(row=4+deltaFila, column=6+Columna).value
-    VBC=sheet.cell(row=4+deltaFila, column=7+Columna).value
+time_now = datetime.datetime.now()
+begin_time = time_now  - datetime.timedelta(hours=1)
+
+for Fila in range(MAX_FILAS+4):
+    Columna=1
+    Fila=Fila+1
+    FECHA=sheet.cell(row=Fila+4, column=1).value
     
     print('------------------------------------------------------')
-    print('FECHA: '+str(FECHA))
-    print('POT: '+str(POT))
-    print('IA: '+str(IA))
-    print('IB: '+str(IB))
-    print('IC: '+str(IC))
-    print('VAB: '+str(VAB))
-    print('VAC: '+str(VAC))
-    print('VBC: '+str(VBC))
-    print('COLUMNA: '+str(Columna))
+    print('TIME PLANILLA DEBE SER >: '+str(FECHA))
+    print('TIME ACTUAL MENOS 1 HORA: '+str(begin_time))
     print('------------------------------------------------------')
+    
+    if (FECHA > begin_time) and (str(FECHA) != 'None') :  
 
-    Columna=Columna+7
+        for token in token_dispositivos:
+            
+            POT=sheet.cell(row=Fila+4, column=1+Columna).value
+            IA=sheet.cell(row=Fila+4, column=2+Columna).value
+            IB=sheet.cell(row=Fila+4, column=3+Columna).value
+            IC=sheet.cell(row=Fila+4, column=4+Columna).value
+            VAB=sheet.cell(row=Fila+4, column=5+Columna).value
+            VAC=sheet.cell(row=Fila+4, column=6+Columna).value
+            VBC=sheet.cell(row=Fila+4, column=7+Columna).value
+            
+            TIMESTAMP=datetime.datetime.strptime(str(FECHA), '%Y-%m-%d %H:%M:%S').timestamp()*1000
+            
+            print('------------------------------------------------------')
+            print('FILA:' +str(Fila+4))
+            print('FECHA: '+str(FECHA))
+            print('POT: '+str(POT))
+            print('IA: '+str(IA))
+            print('IB: '+str(IB))
+            print('IC: '+str(IC))
+            print('VAB: '+str(VAB))
+            print('VAC: '+str(VAC))
+            print('VBC: '+str(VBC))
+            print('------------------------------------------------------')
 
-    os.system('curl -v -X POST -d "{\"POT\":'+str(POT)+'}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
-    os.system('curl -v -X POST -d "{\"IA\":'+str(IA)+'}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
-    os.system('curl -v -X POST -d "{\"IB\":'+str(IB)+'}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
-    os.system('curl -v -X POST -d "{\"IC\":'+str(IC)+'}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
-    os.system('curl -v -X POST -d "{\"VAB\":'+str(VAB)+'}" iot.igromi.com:8080/api/v1/+'+token+'/telemetry --header "Content-Type:application/json"')
-    os.system('curl -v -X POST -d "{\"VAC\":'+str(VAC)+'}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
-    os.system('curl -v -X POST -d "{\"VBC\":'+str(VBC)+'}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
+            Columna=Columna+7
+
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"POT\":'+str(POT)+'}}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"IA\":'+str(IA)+'}}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"IB\":'+str(IB)+'}}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"IC\":'+str(IC)+'}}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"VAB\":'+str(VAB)+'}}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"VAC\":'+str(VAC)+'}}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"VBC\":'+str(VBC)+'}}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
+
 
 
 
