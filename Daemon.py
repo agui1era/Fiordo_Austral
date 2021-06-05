@@ -2,6 +2,7 @@
 import os
 import datetime
 from openpyxl import load_workbook
+from ftplib import FTP
 
 #S/E 300 KVA              jt9DdWAvNK
 #Desodorizado Omega 3     HDjYvFtfZ7
@@ -16,10 +17,16 @@ from openpyxl import load_workbook
 #PRENSAS                  SBslPQTJAa
 #Extracción               UBpnpsCWB8
 #TRIOMAX                  UpekFmGS3w
-     
+
+file='Data.xlsx'
+ftp = FTP('igromi.com')
+ftp.login('igromi','diccionarioAvanza12')
+
+ftp.retrbinary("RETR /iot/Data(01).xlsx" ,open( file, 'wb').write)
+
 token_dispositivos = ['jt9DdWAvNK','HDjYvFtfZ7','WEbn35kQRk','OuvVsF0vek' ,'eo085EanGe','hmqPNgajnY','gQVSvMsyJt','5Msyx2m8Oh','eBSXNYdrl9','K2HcV0IHY6','SBslPQTJAa','UBpnpsCWB8','UpekFmGS3w']
 
-wb = load_workbook('Data(01).xlsx')
+wb = load_workbook(file)
 wb.iso_dates = True
 sheet = wb['||Hoja11']
 
@@ -29,7 +36,7 @@ MAX_FILAS=sheet.max_row
 print('Filas totales: '+str(MAX_FILAS))
 
 time_now = datetime.datetime.now()
-begin_time = time_now  - datetime.timedelta(hours=1)
+begin_time = time_now  - datetime.timedelta(hours=6)
 
 for Fila in range(MAX_FILAS+4):
     Columna=1
@@ -41,7 +48,7 @@ for Fila in range(MAX_FILAS+4):
     print('TIME ACTUAL MENOS 1 HORA: '+str(begin_time))
     print('------------------------------------------------------')
     
-    if (FECHA > begin_time) and (str(FECHA) != 'None') :  
+    if (FECHA > begin_time) :  
 
         for token in token_dispositivos:
             
