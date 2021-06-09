@@ -22,7 +22,7 @@ file='Data.xlsx'
 ftp = FTP('igromi.com')
 ftp.login('igromi','diccionarioAvanza12')
 
-ftp.retrbinary("RETR /iot/Data(01).xlsx" ,open( file, 'wb').write)
+ftp.retrbinary("RETR /fiordo/Data(01).xlsx" ,open( file, 'wb').write)
 
 ftp.quit()
 
