@@ -53,7 +53,7 @@ for Fila in range(MAX_FILAS+4):
     print('------------------------------------------------------')
     
     try:     
-        if (FECHA > begin_time) :  
+        if (1) :  
 
             TIMESTAMP=datetime.datetime.strptime(str(FECHA), '%Y-%m-%d %H:%M:%S').timestamp()*1000
             SE300=sheet.cell(row=Fila+4, column=2).value
