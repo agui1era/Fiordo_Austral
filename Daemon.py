@@ -53,7 +53,7 @@ for Fila in range(MAX_FILAS+4):
     print('------------------------------------------------------')
     
     try:     
-        if (1) :  
+        if (FECHA > begin_time) :  
 
             TIMESTAMP=datetime.datetime.strptime(str(FECHA), '%Y-%m-%d %H:%M:%S').timestamp()*1000
             SE300=sheet.cell(row=Fila+4, column=2).value
@@ -88,9 +88,7 @@ for Fila in range(MAX_FILAS+4):
                 VAB=sheet.cell(row=Fila+4, column=5+Columna).value
                 VAC=sheet.cell(row=Fila+4, column=6+Columna).value
                 VBC=sheet.cell(row=Fila+4, column=7+Columna).value
-                
-                
-                
+                  
                 print('------------------------------------------------------')
                 print('FILA:' +str(Fila+4))
                 print('FECHA: '+str(FECHA))
@@ -112,9 +110,6 @@ for Fila in range(MAX_FILAS+4):
                 os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"VAB\":'+str(VAB)+'}}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
                 os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"VAC\":'+str(VAC)+'}}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
                 os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"VBC\":'+str(VBC)+'}}" iot.igromi.com:8080/api/v1/'+token+'/telemetry --header "Content-Type:application/json"')
-        
-        
-
 
     except:
         print('error')
