@@ -27,6 +27,7 @@ ftp.retrbinary("RETR /fiordo/Data(01).xlsx" ,open( file, 'wb').write)
 ftp.quit()
 
 token_diff='jzEVcu4ocZ'
+token_totales='X6R56MUqQl'
 
 token_dispositivos = ['jt9DdWAvNK','HDjYvFtfZ7','WEbn35kQRk','OuvVsF0vek' ,'eo085EanGe','hmqPNgajnY','gQVSvMsyJt','5Msyx2m8Oh','eBSXNYdrl9','K2HcV0IHY6','SBslPQTJAa','UBpnpsCWB8','UpekFmGS3w']
 
@@ -74,10 +75,30 @@ for Fila in range(MAX_FILAS+4):
             DIFF_SE500 = SE500-REF_VEGETALES-CALDERA-DESO_VEGETALES-REF_OMEGA3
             DIFF_SE1000= SE1000-PRENSAS-EXTRACCION-TRIOMAX-CHI_TRIOMAX
 
+            TOTAL_TRIOMAX=TRIOMAX+CHI_TRIOMAX
+            TOTAL_OMEGA=DESO_OMEGA3+REF_OMEGA3
+            TOTAL_VEGETALES=WINT_VEGETALES+REF_VEGETALES+DESO_VEGETALES
+
+            TOTAL_SE=SE300+SE500+SE1000
+
+            PORCENT_TRIOMAX=(TOTAL_TRIOMAX/TOTAL_SE)*100
+            PORCENT_OMEGA=(TOTAL_OMEGA/TOTAL_SE)*100
+            PORCENT_VEGETALES=(TOTAL_VEGETALES/TOTAL_SE)*100
+            PORCENT_OTROS300=(DIFF_SE300/TOTAL_SE)*100
+            PORCENT_OTROS500=(DIFF_SE500/TOTAL_SE)*100
+            PORCENT_OTROS1000=(DIFF_SE1000/TOTAL_SE)*100
+
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"DIFF_SE300\":'+str(DIFF_SE300)+'}}" iot.igromi.com:8080/api/v1/'+token_diff+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"DIFF_SE500\":'+str(DIFF_SE500)+'}}" iot.igromi.com:8080/api/v1/'+token_diff+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"DIFF_SE1000\":'+str(DIFF_SE1000)+'}}" iot.igromi.com:8080/api/v1/'+token_diff+'/telemetry --header "Content-Type:application/json"')
-                
+
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_TRIOMAX\":'+str(PORCENT_TRIOMAX)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_OMEGA\":'+str(PORCENT_OMEGA)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_VEGETALES\":'+str(PORCENT_VEGETALES)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_OTROS300\":'+str(PORCENT_OTROS300)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_OTROS500\":'+str(PORCENT_OTROS500)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_OTROS1000\":'+str(PORCENT_OTROS1000)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+                    
 
             for token in token_dispositivos:
                 
