@@ -1,18 +1,16 @@
 import psycopg2
+import smtplib, ssl
 import datetime
 import math 
-import os
+from pushbullet import Pushbullet
 
 def getDB(sql_query):
-    try:
-        
+    try:       
         connection = psycopg2.connect(user = "postgres",
                                         password = "imagina12",
                                         host = "iot.igromi.com",
                                         port = "5432",
                                         database = "thingsboard")
-
-        print("Using Python variable in PostgreSQL select Query")
         cursor = connection.cursor()
         postgreSQL_select_Query = sql_query
 
@@ -23,13 +21,11 @@ def getDB(sql_query):
 
     except (Exception, psycopg2.Error) as error:
         print("Error fetching data from PostgreSQL table", error)
-
     finally:
         # closing database connection
         if (connection):
             cursor.close()
             connection.close()
-            print("PostgreSQL connection is closed \n")
     try:
        
        out_query=row[0]
@@ -46,20 +42,21 @@ def date_to_milis(date_string):
 
     return str(math.trunc(obj_date.timestamp() * 1000))
 
-#veo si ha pasado un saco en 20 min
-
 end_date = datetime.datetime.now()
 str_end_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
 print(str_end_date)
-begin_date = end_date  - datetime.timedelta(seconds=1800)
+begin_date = end_date  - datetime.timedelta(hours=3)
 str_begin_date=begin_date.strftime("%d/%m/%Y %H:%M:%S")
 print(str_begin_date)
 
-
-
-sql_str_det="SELECT ts FROM ts_kv_latest WHERE ts >= " + date_to_milis(str_begin_date)+" AND ts <= " + date_to_milis(str_end_date) 
+sql_str_det="SELECT ts FROM ts_kv WHERE ts >= " + date_to_milis(str_begin_date)+" AND ts <= " + date_to_milis(str_end_date)+ "AND key=74" 
 
 print(sql_str_det)
 result_det=str(getDB(sql_str_det))
 print(result_det)
 
+
+if (result_det == 'ERROR'):
+    
+   pb = Pushbullet('o.JQvSJjtVI1orpwzMOG4uG5ocdGFEvXoN')
+   push = pb.push_note('Alerta','Problema con carga de planilla Fiordo Austral')
