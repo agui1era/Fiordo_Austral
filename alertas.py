@@ -56,7 +56,10 @@ result_det=str(getDB(sql_str_det))
 print(result_det)
 
 
-if (result_det == 'ERROR'):
+if (1):
     
    pb = Pushbullet('o.JQvSJjtVI1orpwzMOG4uG5ocdGFEvXoN')
+   push = pb.push_note('Alerta','Problema con carga de planilla Fiordo Austral')
+
+   pb = Pushbullet('o.QZXL7gik1bSbYyHMaQzNl9QMmfMB4GNa')
    push = pb.push_note('Alerta','Problema con carga de planilla Fiordo Austral')
