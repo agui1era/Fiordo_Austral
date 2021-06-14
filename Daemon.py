@@ -72,14 +72,14 @@ for Fila in range(MAX_FILAS+4):
             CHI_TRIOMAX=sheet.cell(row=Fila+4, column=86).value
 
             DIFF_SE300 = SE300-DESO_OMEGA3-WINT_VEGETALES
-            DIFF_SE500 = SE500-REF_VEGETALES-CALDERA-DESO_VEGETALES-REF_OMEGA3
-            DIFF_SE1000= SE1000-PRENSAS-EXTRACCION-TRIOMAX-CHI_TRIOMAX
+            DIFF_SE500 = SE500-REF_VEGETALES-CALDERA-DESO_VEGETALES
+            DIFF_SE1000= SE1000-PRENSAS-EXTRACCION-TRIOMAX-CHI_TRIOMAX-REF_OMEGA3
 
             TOTAL_TRIOMAX=TRIOMAX+CHI_TRIOMAX
             TOTAL_OMEGA=DESO_OMEGA3+REF_OMEGA3
             TOTAL_VEGETALES=WINT_VEGETALES+REF_VEGETALES+DESO_VEGETALES+PRENSAS+EXTRACCION
 
-            TOTAL_SE=SE300+SE500+SE1000
+            TOTAL_SE=TOTAL_TRIOMAX+TOTAL_OMEGA+TOTAL_VEGETALES+DIFF_SE300+DIFF_SE500+DIFF_SE1000+CALDERA
 
             PORCENT_TRIOMAX=(TOTAL_TRIOMAX/TOTAL_SE)*100
             PORCENT_OMEGA=(TOTAL_OMEGA/TOTAL_SE)*100
@@ -99,9 +99,6 @@ for Fila in range(MAX_FILAS+4):
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_VEGETALES\":'+str(PORCENT_VEGETALES)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_OTROS300\":'+str(PORCENT_OTROS300)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_OTROS500\":'+str(PORCENT_OTROS500)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
-           
-            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_PRENSAS\":'+str(PORCENT_PRENSAS)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
-            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_EXTRACION\":'+str(PORCENT_EXTRACION)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_CALDERA\":'+str(PORCENT_CALDERA)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
            
                     
