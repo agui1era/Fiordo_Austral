@@ -18,18 +18,18 @@ from ftplib import FTP
 #Extracción               UBpnpsCWB8
 #TRIOMAX                  UpekFmGS3w
 
-file='Data.xlsx'
+file='ultimo.xlsx'
 ftp = FTP('igromi.com')
 ftp.login('igromi','diccionarioAvanza12')
 
-ftp.retrbinary("RETR /fiordo/Data(01).xlsx" ,open( file, 'wb').write)
+ftp.retrbinary("RETR /fiordo/ultimo.xlsx" ,open( file, 'wb').write)
 
 ftp.quit()
 
 token_diff='jzEVcu4ocZ'
 token_totales='X6R56MUqQl'
 
-token_dispositivos = ['jt9DdWAvNK','HDjYvFtfZ7','WEbn35kQRk','OuvVsF0vek' ,'eo085EanGe','hmqPNgajnY','gQVSvMsyJt','5Msyx2m8Oh','eBSXNYdrl9','K2HcV0IHY6','SBslPQTJAa','UBpnpsCWB8','UpekFmGS3w']
+token_dispositivos = ['jt9DdWAvNK','HDjYvFtfZ7','WEbn35kQRk','OuvVsF0vek' ,'eo085EanGe','hmqPNgajnY','gQVSvMsyJt','5Msyx2m8Oh','eBSXNYdrl9','K2HcV0IHY6','SBslPQTJAa','UBpnpsCWB8','UpekFmGS3w','BoJd2ibLrC']
 
 wb = load_workbook(file)
 wb.iso_dates = True
@@ -70,14 +70,15 @@ for Fila in range(MAX_FILAS+4):
             EXTRACCION=sheet.cell(row=Fila+4, column=72).value
             TRIOMAX=sheet.cell(row=Fila+4, column=79).value
             CHI_TRIOMAX=sheet.cell(row=Fila+4, column=86).value
+            CHI_VEGETALES=sheet.cell(row=Fila+4, column=93).value
 
             DIFF_SE300 = SE300-DESO_OMEGA3-WINT_VEGETALES
             DIFF_SE500 = SE500-REF_VEGETALES-CALDERA-DESO_VEGETALES
-            DIFF_SE1000= SE1000-PRENSAS-EXTRACCION-TRIOMAX-CHI_TRIOMAX-REF_OMEGA3
+            DIFF_SE1000= SE1000-PRENSAS-EXTRACCION-TRIOMAX-CHI_TRIOMAX-REF_OMEGA3-CHI_VEGETALES
 
             TOTAL_TRIOMAX=TRIOMAX+CHI_TRIOMAX
             TOTAL_OMEGA=DESO_OMEGA3+REF_OMEGA3
-            TOTAL_VEGETALES=WINT_VEGETALES+REF_VEGETALES+DESO_VEGETALES+PRENSAS+EXTRACCION
+            TOTAL_VEGETALES=WINT_VEGETALES+REF_VEGETALES+DESO_VEGETALES+PRENSAS+EXTRACCION+CHI_VEGETALES
 
             TOTAL_SE=TOTAL_TRIOMAX+TOTAL_OMEGA+TOTAL_VEGETALES+DIFF_SE300+DIFF_SE500+DIFF_SE1000+CALDERA
 
