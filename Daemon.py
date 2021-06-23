@@ -17,6 +17,7 @@ from ftplib import FTP
 #PRENSAS                  SBslPQTJAa
 #Extracción               UBpnpsCWB8
 #TRIOMAX                  UpekFmGS3w
+#CHI. VEGETALEs           BoJd2ibLrC
 
 file='ultimo.xlsx'
 ftp = FTP('igromi.com')
