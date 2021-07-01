@@ -19,11 +19,11 @@ from ftplib import FTP
 #TRIOMAX                  UpekFmGS3w
 #CHI. VEGETALEs           BoJd2ibLrC
 
-file='ultimo.xlsx'
+file='ultimo.xls'
 ftp = FTP('igromi.com')
 ftp.login('igromi','diccionarioAvanza12')
 
-ftp.retrbinary("RETR /fiordo/ultimo(01).xlsx" ,open( file, 'wb').write)
+ftp.retrbinary("RETR /fiordo/ultimo(01).xls" ,open( file, 'wb').write)
 
 ftp.quit()
 
