@@ -94,7 +94,6 @@ for Fila in range(MAX_FILAS+4):
             PORCENT_SE500=(SE500/TOTAL_SE)*100
             PORCENT_SE1000=(SE1000/TOTAL_SE)*100
 
-
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"DIFF_SE300\":'+str(DIFF_SE300)+'}}" iot.igromi.com:8080/api/v1/'+token_diff+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"DIFF_SE500\":'+str(DIFF_SE500)+'}}" iot.igromi.com:8080/api/v1/'+token_diff+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"DIFF_SE1000\":'+str(DIFF_SE1000)+'}}" iot.igromi.com:8080/api/v1/'+token_diff+'/telemetry --header "Content-Type:application/json"')
@@ -109,8 +108,6 @@ for Fila in range(MAX_FILAS+4):
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_SE300":'+str(PORCENT_SE300)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_SE500\":'+str(PORCENT_SE500)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_SE1000\":'+str(PORCENT_SE1000)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
-
-                    
 
             for token in token_dispositivos:
                 
