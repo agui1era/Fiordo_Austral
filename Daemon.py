@@ -137,7 +137,6 @@ token_totales='X6R56MUqQl'
 
 token_dispositivos = ['jt9DdWAvNK',         'HDjYvFtfZ7',                  'WEbn35kQRk',                      'OuvVsF0vek' ,        'eo085EanGe',                   'hmqPNgajnY',           'gQVSvMsyJt',                   '5Msyx2m8Oh',                   'eBSXNYdrl9',           'K2HcV0IHY6',               'SBslPQTJAa',           'UBpnpsCWB8',               'UpekFmGS3w',           'BoJd2ibLrC']
 energia_anterior =   [ENERGIA_ANT_SE300,    ENERGIA_ANT_DESO_OMEGA3,        ENERGIA_ANT_WINT_VEGETALES,       ENERGIA_ANT_SE500,    ENERGIA_ANT_REF_VEGETALES,      ENERGIA_ANT_CALDERA,    ENERGIA_ANT_DESO_VEGETALES,     ENERGIA_ANT_REF_OMEGA3,         ENERGIA_ANT_SE1000,     ENERGIA_ANT_CHI_TRIOMAX,    ENERGIA_ANT_PRENSAS,    ENERGIA_ANT_EXTRACCION,     ENERGIA_ANT_TRIOMAX,    ENERGIA_ANT_CHI_VEGETALES]
-indice=0
 
 wb = load_workbook(file)
 wb.iso_dates = True
@@ -215,6 +214,8 @@ for Fila in range(MAX_FILAS+4):
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_SE300":'+str(PORCENT_SE300)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_SE500\":'+str(PORCENT_SE500)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_SE1000\":'+str(PORCENT_SE1000)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            
+            indice=0
 
             for token in token_dispositivos:
                 
