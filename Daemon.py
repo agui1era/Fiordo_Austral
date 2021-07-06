@@ -219,7 +219,7 @@ for Fila in range(MAX_FILAS+4):
 
             for token in token_dispositivos:
                 
-                POT=sheet.cell(row=Fila+4, column=1+Columna).value-energia_anterior[indice]
+                POT=sheet.cell(row=Fila+4, column=1+Columna).value-energia_anterior[indice]/10
                 IA=sheet.cell(row=Fila+4, column=2+Columna).value
                 IB=sheet.cell(row=Fila+4, column=3+Columna).value
                 IC=sheet.cell(row=Fila+4, column=4+Columna).value
