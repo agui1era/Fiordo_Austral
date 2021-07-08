@@ -228,7 +228,7 @@ for Fila in range(MAX_FILAS+4):
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_WINT_VEGETALES\":'+str( ENERGIA_ANT_WINT_VEGETALES)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_REF_VEGETALES\":'+str(ENERGIA_ANT_REF_VEGETALES)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_EXTRACCION\":'+str( ENERGIA_ANT_EXTRACCION)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
-            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_CALDERA\":'+str(ENERGIA_ANT_CALDERA)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_PRENSA\":'+str(ENERGIA_ANT_CALDERA)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_CALDERA\":'+str(ENERGIA_ANT_PRENSAS)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"') 
 
 
