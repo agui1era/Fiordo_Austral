@@ -16,12 +16,13 @@ from ftplib import FTP
 #CALDERA                  hmqPNgajnY            5da0a310-c221-11eb-a61d-e9bafc595a10
 #DESO. VEGETALES          gQVSvMsyJt            8adc3a10-c221-11eb-a61d-e9bafc595a10
 #REF. OMEGA 3             5Msyx2m8Oh            0aa404d0-c222-11eb-a61d-e9bafc595a10
-#S/E 1000                 eBSXNYdrl9            b3a243f0-c220-11eb-a61d-e9bafc595a10          
-#CHI. TRIOMAX             K2HcV0IHY6            9971bf50-c221-11eb-a61d-e9bafc595a10
-#PRENSAS                  SBslPQTJAa            e70ed3b0-c221-11eb-a61d-e9bafc595a10
-#Extracción               UBpnpsCWB8            fcc01c50-c221-11eb-a61d-e9bafc595a10
+#S/E 1000                 eBSXNYdrl9            b3a243f0-c220-11eb-a61d-e9bafc595a10
+#PRENSAS                  SBslPQTJAa            e70ed3b0-c221-11eb-a61d-e9bafc595a10 
+#Extracción               UBpnpsCWB8            fcc01c50-c221-11eb-a61d-e9bafc595a10         
 #TRIOMAX                  UpekFmGS3w            1d869d10-c222-11eb-a61d-e9bafc595a10
+#CHI. TRIOMAX             K2HcV0IHY6            9971bf50-c221-11eb-a61d-e9bafc595a10
 #CHI. VEGETALES           BoJd2ibLrC            ffe25760-d39a-11eb-a594-afa0469684b4
+
 
 def getDB(sql_query):
     try:       
@@ -123,6 +124,10 @@ sql_str_det="SELECT long_v FROM ts_kv WHERE ts <= "+ date_to_milis(str_begin_dat
 ENERGIA_ANT_CHI_VEGETALES=getDB(sql_str_det)
 print('Energia mes anterior  CHI_VEGETALES '+str(ENERGIA_ANT_CHI_VEGETALES))
 
+token_dispositivos = ['jt9DdWAvNK',         'HDjYvFtfZ7',                  'WEbn35kQRk',                      'OuvVsF0vek' ,        'eo085EanGe',                   'hmqPNgajnY',           'gQVSvMsyJt',                   '5Msyx2m8Oh',                   'eBSXNYdrl9',           'SBslPQTJAa',            'UBpnpsCWB8',          'UpekFmGS3w',           'K2HcV0IHY6',          'BoJd2ibLrC']
+energia_anterior =   [ENERGIA_ANT_SE300,    ENERGIA_ANT_DESO_OMEGA3,        ENERGIA_ANT_WINT_VEGETALES,       ENERGIA_ANT_SE500,    ENERGIA_ANT_REF_VEGETALES,      ENERGIA_ANT_CALDERA,    ENERGIA_ANT_DESO_VEGETALES,     ENERGIA_ANT_REF_OMEGA3,         ENERGIA_ANT_SE1000,    ENERGIA_ANT_PRENSAS, ENERGIA_ANT_EXTRACCION,   ENERGIA_ANT_TRIOMAX,   ENERGIA_ANT_CHI_TRIOMAX,   ENERGIA_ANT_CHI_VEGETALES]
+
+
 
 file='ultimo.xlsx'
 ftp = FTP('igromi.com')
@@ -134,9 +139,6 @@ ftp.quit()
 
 token_diff='jzEVcu4ocZ'
 token_totales='X6R56MUqQl'
-
-token_dispositivos = ['jt9DdWAvNK',         'HDjYvFtfZ7',                  'WEbn35kQRk',                      'OuvVsF0vek' ,        'eo085EanGe',                   'hmqPNgajnY',           'gQVSvMsyJt',                   '5Msyx2m8Oh',                   'eBSXNYdrl9',           'K2HcV0IHY6',               'SBslPQTJAa',           'UBpnpsCWB8',               'UpekFmGS3w',           'BoJd2ibLrC']
-energia_anterior =   [ENERGIA_ANT_SE300,    ENERGIA_ANT_DESO_OMEGA3,        ENERGIA_ANT_WINT_VEGETALES,       ENERGIA_ANT_SE500,    ENERGIA_ANT_REF_VEGETALES,      ENERGIA_ANT_CALDERA,    ENERGIA_ANT_DESO_VEGETALES,     ENERGIA_ANT_REF_OMEGA3,         ENERGIA_ANT_SE1000,     ENERGIA_ANT_CHI_TRIOMAX,    ENERGIA_ANT_PRENSAS,    ENERGIA_ANT_EXTRACCION,     ENERGIA_ANT_TRIOMAX,    ENERGIA_ANT_CHI_VEGETALES]
 
 wb = load_workbook(file)
 wb.iso_dates = True
