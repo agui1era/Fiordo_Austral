@@ -166,20 +166,20 @@ for Fila in range(MAX_FILAS+4):
         if (FECHA > begin_time) :  
 
             TIMESTAMP=datetime.datetime.strptime(str(FECHA), '%Y-%m-%d %H:%M:%S').timestamp()*1000
-            SE300=sheet.cell(row=Fila+4, column=2).value-ENERGIA_ANT_SE300/10
-            DESO_OMEGA3=sheet.cell(row=Fila+4, column=9).value-ENERGIA_ANT_DESO_OMEGA3/10
-            WINT_VEGETALES=sheet.cell(row=Fila+4, column=16).value-ENERGIA_ANT_WINT_VEGETALES/10
-            SE500=sheet.cell(row=Fila+4, column=23).value-ENERGIA_ANT_SE500/10
-            REF_VEGETALES=sheet.cell(row=Fila+4, column=30).value-ENERGIA_ANT_REF_VEGETALES/10
-            CALDERA=sheet.cell(row=Fila+4, column=37).value-ENERGIA_ANT_CALDERA/10
-            DESO_VEGETALES=sheet.cell(row=Fila+4, column=44).value-ENERGIA_ANT_DESO_VEGETALES/10
-            REF_OMEGA3=sheet.cell(row=Fila+4, column=51).value-ENERGIA_ANT_REF_OMEGA3/10
-            SE1000=sheet.cell(row=Fila+4, column=58).value-ENERGIA_ANT_SE1000/10
-            PRENSAS=sheet.cell(row=Fila+4, column=65).value-ENERGIA_ANT_PRENSAS/10
-            EXTRACCION=sheet.cell(row=Fila+4, column=72).value-ENERGIA_ANT_EXTRACCION/10
-            TRIOMAX=sheet.cell(row=Fila+4, column=79).value-ENERGIA_ANT_TRIOMAX/10
-            CHI_TRIOMAX=sheet.cell(row=Fila+4, column=86).value-ENERGIA_ANT_CHI_TRIOMAX/10
-            CHI_VEGETALES=sheet.cell(row=Fila+4, column=93).value-ENERGIA_ANT_CHI_VEGETALES/10
+            SE300=sheet.cell(row=Fila+4, column=2).value
+            DESO_OMEGA3=sheet.cell(row=Fila+4, column=9).value
+            WINT_VEGETALES=sheet.cell(row=Fila+4, column=16).value
+            SE500=sheet.cell(row=Fila+4, column=23).value
+            REF_VEGETALES=sheet.cell(row=Fila+4, column=30).value
+            CALDERA=sheet.cell(row=Fila+4, column=37).value
+            DESO_VEGETALES=sheet.cell(row=Fila+4, column=44).value
+            REF_OMEGA3=sheet.cell(row=Fila+4, column=51).value
+            SE1000=sheet.cell(row=Fila+4, column=58).value
+            PRENSAS=sheet.cell(row=Fila+4, column=65).value
+            EXTRACCION=sheet.cell(row=Fila+4, column=72).value
+            TRIOMAX=sheet.cell(row=Fila+4, column=79).value
+            CHI_TRIOMAX=sheet.cell(row=Fila+4, column=86).value
+            CHI_VEGETALES=sheet.cell(row=Fila+4, column=93).value
 
             DIFF_SE300 = SE300-DESO_OMEGA3-WINT_VEGETALES
             DIFF_SE500 = SE500-REF_VEGETALES-CALDERA-DESO_VEGETALES
@@ -217,6 +217,22 @@ for Fila in range(MAX_FILAS+4):
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_SE500\":'+str(PORCENT_SE500)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
             os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"PORCENT_SE1000\":'+str(PORCENT_SE1000)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
             
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_TRIOMAX\":'+str(ENERGIA_ANT_TRIOMAX)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_CHI_TRIOMAX":'+str(ENERGIA_ANT_CHI_TRIOMAX)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_REF_OMEGA3\":'+str(ENERGIA_ANT_REF_OMEGA3)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')           
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_DESO_OMEGA3\":'+str(ENERGIA_ANT_DESO_OMEGA3)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"') 
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_SE300":'+str(ENERGIA_ANT_SE300)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_SE500\":'+str(ENERGIA_ANT_SE500)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_SE1000\":'+str(ENERGIA_ANT_SE1000)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_CHI_VEGETALES\":'+str(ENERGIA_ANT_CHI_VEGETALES)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_WINT_VEGETALES\":'+str( ENERGIA_ANT_WINT_VEGETALES)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_REF_VEGETALES\":'+str(ENERGIA_ANT_REF_VEGETALES)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_EXTRACCION\":'+str( ENERGIA_ANT_EXTRACCION)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_CALDERA\":'+str(ENERGIA_ANT_CALDERA)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"')
+            os.system('curl -v -X POST -d "{\"ts\":'+str(TIMESTAMP)+',\"values\":{\"ANT_CALDERA\":'+str(ENERGIA_ANT_PRENSAS)+'}}" iot.igromi.com:8080/api/v1/'+token_totales+'/telemetry --header "Content-Type:application/json"') 
+
+
+             
             indice=0
 
             for token in token_dispositivos:
