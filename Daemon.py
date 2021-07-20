@@ -166,20 +166,20 @@ for Fila in range(MAX_FILAS+4):
         if (FECHA > begin_time) :  
 
             TIMESTAMP=datetime.datetime.strptime(str(FECHA), '%Y-%m-%d %H:%M:%S').timestamp()*1000
-            SE300=sheet.cell(row=Fila+4, column=2).value
-            DESO_OMEGA3=sheet.cell(row=Fila+4, column=9).value
-            WINT_VEGETALES=sheet.cell(row=Fila+4, column=16).value
-            SE500=sheet.cell(row=Fila+4, column=23).value
-            REF_VEGETALES=sheet.cell(row=Fila+4, column=30).value
-            CALDERA=sheet.cell(row=Fila+4, column=37).value
-            DESO_VEGETALES=sheet.cell(row=Fila+4, column=44).value
-            REF_OMEGA3=sheet.cell(row=Fila+4, column=51).value
-            SE1000=sheet.cell(row=Fila+4, column=58).value
-            PRENSAS=sheet.cell(row=Fila+4, column=65).value
-            EXTRACCION=sheet.cell(row=Fila+4, column=72).value
-            TRIOMAX=sheet.cell(row=Fila+4, column=79).value
-            CHI_TRIOMAX=sheet.cell(row=Fila+4, column=86).value
-            CHI_VEGETALES=sheet.cell(row=Fila+4, column=93).value
+            SE300=sheet.cell(row=Fila+4, column=2).value - ENERGIA_ANT_SE300
+            DESO_OMEGA3=sheet.cell(row=Fila+4, column=9).value - ENERGIA_ANT_DESO_OMEGA3
+            WINT_VEGETALES=sheet.cell(row=Fila+4, column=16).value-ENERGIA_ANT_WINT_VEGETALES
+            SE500=sheet.cell(row=Fila+4, column=23).value-ENERGIA_ANT_SE500
+            REF_VEGETALES=sheet.cell(row=Fila+4, column=30).value-ENERGIA_ANT_REF_VEGETALES
+            CALDERA=sheet.cell(row=Fila+4, column=37).value-ENERGIA_ANT_CALDERA
+            DESO_VEGETALES=sheet.cell(row=Fila+4, column=44).value-ENERGIA_ANT_DESO_VEGETALES
+            REF_OMEGA3=sheet.cell(row=Fila+4, column=51).value-ENERGIA_ANT_REF_OMEGA3
+            SE1000=sheet.cell(row=Fila+4, column=58).value-ENERGIA_ANT_SE1000
+            PRENSAS=sheet.cell(row=Fila+4, column=65).value-ENERGIA_ANT_PRENSAS
+            EXTRACCION=sheet.cell(row=Fila+4, column=72).value-ENERGIA_ANT_EXTRACCION
+            TRIOMAX=sheet.cell(row=Fila+4, column=79).value-ENERGIA_ANT_TRIOMAX
+            CHI_TRIOMAX=sheet.cell(row=Fila+4, column=86).value-ENERGIA_ANT_CHI_TRIOMAX
+            CHI_VEGETALES=sheet.cell(row=Fila+4, column=93).value-ENERGIA_ANT_CHI_VEGETALES
 
             DIFF_SE300 = SE300-DESO_OMEGA3-WINT_VEGETALES
             DIFF_SE500 = SE500-REF_VEGETALES-CALDERA-DESO_VEGETALES
