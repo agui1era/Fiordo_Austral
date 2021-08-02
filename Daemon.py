@@ -133,7 +133,7 @@ file='ultimo.xlsx'
 ftp = FTP('igromi.com')
 ftp.login('igromi','diccionarioAvanza12')
 
-ftp.retrbinary("RETR /fiordo/ultimo(01).xlsx" ,open( file, 'wb').write)
+ftp.retrbinary("RETR /fiordo/ultimo(02).xlsx" ,open( file, 'wb').write)
 
 ftp.quit()
 
