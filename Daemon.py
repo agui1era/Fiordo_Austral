@@ -120,7 +120,7 @@ sql_str_det="SELECT long_v FROM ts_kv WHERE ts <= "+ date_to_milis(str_begin_dat
 ENERGIA_ANT_TRIOMAX=getDB(sql_str_det)
 print('Energia mes anterior  TRIOMAX '+str(ENERGIA_ANT_TRIOMAX))
 
-sql_str_det="SELECT long_v FROM ts_kv WHERE ts <= "+ date_to_milis(str_begin_date)+ " AND key=74 " + "AND  entity_id='ffe25760-d39a-11eb-a594-afa0469684b' ORDER BY ts DESC LIMIT 1"
+sql_str_det="SELECT long_v FROM ts_kv WHERE ts <= "+ date_to_milis(str_begin_date)+ " AND key=74 " + "AND  entity_id='ffe25760-d39a-11eb-a594-afa0469684b4' ORDER BY ts DESC LIMIT 1"
 ENERGIA_ANT_CHI_VEGETALES=getDB(sql_str_det)
 print('Energia mes anterior  CHI_VEGETALES '+str(ENERGIA_ANT_CHI_VEGETALES))
 
@@ -130,12 +130,6 @@ energia_anterior =   [ENERGIA_ANT_SE300,    ENERGIA_ANT_DESO_OMEGA3,        ENER
 
 
 file='ultimo.xlsx'
-ftp = FTP('igromi.com')
-ftp.login('igromi','diccionarioAvanza12')
-
-ftp.retrbinary("RETR /fiordo/ultimo(01).xlsx" ,open( file, 'wb').write)
-
-ftp.quit()
 
 token_diff='jzEVcu4ocZ'
 token_totales='X6R56MUqQl'
