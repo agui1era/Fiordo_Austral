@@ -144,7 +144,7 @@ MAX_FILAS=sheet.max_row
 print('Filas totales: '+str(MAX_FILAS))
 
 time_now = datetime.datetime.now()
-begin_time = time_now  - datetime.timedelta(hours=12)
+begin_time = time_now  - datetime.timedelta(hours=60)
 
 for Fila in range(MAX_FILAS+4):
     Columna=1
@@ -173,7 +173,7 @@ for Fila in range(MAX_FILAS+4):
             PRENSAS=sheet.cell(row=Fila+4, column=65).value - ENERGIA_ANT_PRENSAS
             EXTRACCION=sheet.cell(row=Fila+4, column=72).value - ENERGIA_ANT_EXTRACCION
             TRIOMAX=sheet.cell(row=Fila+4, column=79).value - ENERGIA_ANT_TRIOMAX
-            CHI_TRIOMAX=sheet.cell(row=Fila+4, column=86).value- ENERGIA_ANT_TRIOMAX
+            CHI_TRIOMAX=sheet.cell(row=Fila+4, column=86).value- ENERGIA_ANT_CHI_TRIOMAX
             CHI_VEGETALES=sheet.cell(row=Fila+4, column=93).value - ENERGIA_ANT_CHI_VEGETALES
 
             DIFF_SE300 = SE300-DESO_OMEGA3-WINT_VEGETALES
