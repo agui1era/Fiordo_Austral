@@ -1,0 +1,1 @@
+ C:\Users\matias.valdes\AppData\Local\Programs\Python\Python39\python.exe C:\Users\matias.valdes\Documents\GitHub\Fiordo_Austral\Daemon.py

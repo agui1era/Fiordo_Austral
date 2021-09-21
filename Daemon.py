@@ -127,10 +127,7 @@ print('Energia mes anterior  CHI_VEGETALES '+str(ENERGIA_ANT_CHI_VEGETALES))
 token_dispositivos = ['jt9DdWAvNK',         'HDjYvFtfZ7',                  'WEbn35kQRk',                      'OuvVsF0vek' ,        'eo085EanGe',                   'hmqPNgajnY',           'gQVSvMsyJt',                   '5Msyx2m8Oh',                   'eBSXNYdrl9',           'SBslPQTJAa',            'UBpnpsCWB8',          'UpekFmGS3w',           'K2HcV0IHY6',          'BoJd2ibLrC']
 energia_anterior =   [ENERGIA_ANT_SE300,    ENERGIA_ANT_DESO_OMEGA3,        ENERGIA_ANT_WINT_VEGETALES,       ENERGIA_ANT_SE500,    ENERGIA_ANT_REF_VEGETALES,      ENERGIA_ANT_CALDERA,    ENERGIA_ANT_DESO_VEGETALES,     ENERGIA_ANT_REF_OMEGA3,         ENERGIA_ANT_SE1000,    ENERGIA_ANT_PRENSAS, ENERGIA_ANT_EXTRACCION,   ENERGIA_ANT_TRIOMAX,   ENERGIA_ANT_CHI_TRIOMAX,   ENERGIA_ANT_CHI_VEGETALES]
 
-
-
-file='ultimo.xlsx'
-
+file=r"C:\Users\matias.valdes\Desktop\Registros\ultimo(01).xlsx"
 token_diff='jzEVcu4ocZ'
 token_totales='X6R56MUqQl'
 
@@ -173,7 +170,7 @@ for Fila in range(MAX_FILAS+4):
             PRENSAS=sheet.cell(row=Fila+4, column=65).value - ENERGIA_ANT_PRENSAS
             EXTRACCION=sheet.cell(row=Fila+4, column=72).value - ENERGIA_ANT_EXTRACCION
             TRIOMAX=sheet.cell(row=Fila+4, column=79).value - ENERGIA_ANT_TRIOMAX
-            CHI_TRIOMAX=sheet.cell(row=Fila+4, column=86).value- ENERGIA_ANT_TRIOMAX
+            CHI_TRIOMAX=sheet.cell(row=Fila+4, column=86).value- ENERGIA_ANT_CHI_TRIOMAX
             CHI_VEGETALES=sheet.cell(row=Fila+4, column=93).value - ENERGIA_ANT_CHI_VEGETALES
 
             DIFF_SE300 = SE300-DESO_OMEGA3-WINT_VEGETALES
