@@ -141,7 +141,7 @@ MAX_FILAS=sheet.max_row
 print('Filas totales: '+str(MAX_FILAS))
 
 time_now = datetime.datetime.now()
-begin_time = time_now  - datetime.timedelta(hours=12)
+begin_time = time_now  - datetime.timedelta(hours=60)
 
 for Fila in range(MAX_FILAS+4):
     Columna=1
