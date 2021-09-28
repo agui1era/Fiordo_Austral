@@ -128,8 +128,13 @@ token_dispositivos = ['jt9DdWAvNK',         'HDjYvFtfZ7',                  'WEbn
 energia_anterior =   [ENERGIA_ANT_SE300,    ENERGIA_ANT_DESO_OMEGA3,        ENERGIA_ANT_WINT_VEGETALES,       ENERGIA_ANT_SE500,    ENERGIA_ANT_REF_VEGETALES,      ENERGIA_ANT_CALDERA,    ENERGIA_ANT_DESO_VEGETALES,     ENERGIA_ANT_REF_OMEGA3,         ENERGIA_ANT_SE1000,    ENERGIA_ANT_PRENSAS, ENERGIA_ANT_EXTRACCION,   ENERGIA_ANT_TRIOMAX,   ENERGIA_ANT_CHI_TRIOMAX,   ENERGIA_ANT_CHI_VEGETALES]
 
 
-
 file='ultimo.xlsx'
+ftp = FTP('igromi.com')
+ftp.login('igromi','diccionarioAvanza12')
+
+ftp.retrbinary("RETR /ultimo.xlsx" ,open( file, 'wb').write)
+
+ftp.quit()
 
 token_diff='jzEVcu4ocZ'
 token_totales='X6R56MUqQl'
