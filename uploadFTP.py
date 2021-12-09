@@ -10,7 +10,7 @@ ftp = ftplib.FTP(FTP_HOST, FTP_USER, FTP_PASS)
 ftp.encoding = "utf-8"
 
 # local file name you want to upload
-filename = r"C:\Users\matias.valdes\Desktop\Registros\ultimo(02).xlsx"
+filename = r"C:\Users\matias.valdes\Desktop\Registros\ultimo(01).xlsx"
 with open(filename, "rb") as file:
     # use FTP's STOR command to upload the file
     ftp.storbinary(f"STOR ultimo.xlsx", file)
