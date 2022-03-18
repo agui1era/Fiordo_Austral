@@ -2,6 +2,7 @@
 import os
 import datetime
 import math
+from warnings import catch_warnings
 import psycopg2
 from dateutil.relativedelta import relativedelta
 from openpyxl import load_workbook
@@ -57,15 +58,20 @@ def getDB(sql_query):
 
 def date_to_milis(date_string):
 
+    try:
     #convert date to timestamp
-    obj_date = datetime.datetime.strptime(date_string,"%d/%m/%Y %H:%M:%S")
+        obj_date = datetime.datetime.strptime(date_string,"%d/%m/%Y %H:%M:%S")
 
+    except:
+         print("ERROR: "+date_string)
+         return ""
+    
     return str(math.trunc(obj_date.timestamp() * 1000))
 
 end_date = datetime.datetime.now()
-str_end_date=end_date.strftime("30/%m/%Y 23:59:59")
+str_end_date=end_date.strftime("28/%m/%Y 23:59:59")
 begin_date = end_date  - relativedelta(months=1)
-str_begin_date=begin_date.strftime("30/%m/%Y 23:59:59")
+str_begin_date=begin_date.strftime("28/%m/%Y 23:59:59")
 print(str_begin_date)
 
 sql_str_det="SELECT long_v FROM ts_kv WHERE ts <= "+ date_to_milis(str_begin_date)+ " AND key=74 " + "AND  entity_id='d37982b0-c220-11eb-a61d-e9bafc595a10' ORDER BY ts DESC LIMIT 1"
