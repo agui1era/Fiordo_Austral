@@ -1,8 +1,29 @@
 import psycopg2
 import datetime
-import math 
-from pushbullet import Pushbullet
+import math
+from email.mime.multipart import MIMEMultipart 
+from email.mime.text import MIMEText 
+from email.mime.base import MIMEBase
+import smtplib
+from email import encoders 
 
+emails=["aguileraelectro@gmail.com","barbara@igromi.com","victor.ruz@igromi.com"]
+horas_alarma=24
+
+fromaddr = "news@igromi.cl"
+msg = MIMEMultipart() 
+# storing the senders email address 
+msg['From'] = fromaddr 
+msg['Subject'] ="Error carga de datos Fiordo Austral "
+body=''
+
+s = smtplib.SMTP("mail.igromi.cl", 587) 
+# start TLS for security 
+s.starttls() 
+# Authentication 
+s.login(fromaddr, "1466PIXVPL76")
+
+sensorName="Totales_fiordo_austral"
 
 def getDB(sql_query):
     try:       
@@ -39,17 +60,16 @@ def date_to_milis(date_string):
 
     #convert date to timestamp
     obj_date = datetime.datetime.strptime(date_string,"%d/%m/%Y %H:%M:%S")
-
     return str(math.trunc(obj_date.timestamp() * 1000))
 
 end_date = datetime.datetime.now()
 str_end_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
 print(str_end_date)
-begin_date = end_date  - datetime.timedelta(hours=3)
+begin_date = end_date  - datetime.timedelta(hours=horas_alarma)
 str_begin_date=begin_date.strftime("%d/%m/%Y %H:%M:%S")
 print(str_begin_date)
 
-sql_str_det="SELECT ts FROM ts_kv WHERE ts >= " + date_to_milis(str_begin_date)+" AND ts <= " + date_to_milis(str_end_date)+ "AND key=74" 
+sql_str_det="SELECT ts FROM ts_kv WHERE ts >= " + date_to_milis(str_begin_date)+ " AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
 
 print(sql_str_det)
 result_det=str(getDB(sql_str_det))
@@ -58,5 +78,18 @@ print(result_det)
 
 if (result_det=='ERROR'):
 
-    pb = Pushbullet('o.MjdJSUG2pZPPhruHV0DfgTYRZCIldfNt')
-    push = pb.push_note('Alerta','Problema con carga de planilla Fiordo Austral')
+  ################  Envio de mail ###################
+  # attach the body with the msg instance 
+  # attach the body with the msg instance 
+  msg.attach(MIMEText(body, 'plain')) 
+  # instance of MIMEBase and named as p 
+  p = MIMEBase("application", "octet-stream") 
+  # creates SMTP session 
+  
+    # Converts the Multipart msg into a string 
+  text = msg.as_string() 
+    # sending the mail 
+
+  for email in emails :
+    msg["To"] = email,
+    s.sendmail(fromaddr,email, text)

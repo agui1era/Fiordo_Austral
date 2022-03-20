@@ -69,9 +69,15 @@ def date_to_milis(date_string):
     return str(math.trunc(obj_date.timestamp() * 1000))
 
 end_date = datetime.datetime.now()
-str_end_date=end_date.strftime("28/%m/%Y 23:59:59")
+
+month=int(end_date.strftime("%m"))
+if month == 3:
+   days_str="28"
+else:
+   days_str="30"
+str_end_date=end_date.strftime(days_str+"/%m/%Y 23:59:59")
 begin_date = end_date  - relativedelta(months=1)
-str_begin_date=begin_date.strftime("28/%m/%Y 23:59:59")
+str_begin_date=begin_date.strftime(days_str+"/%m/%Y 23:59:59")
 print(str_begin_date)
 
 sql_str_det="SELECT long_v FROM ts_kv WHERE ts <= "+ date_to_milis(str_begin_date)+ " AND key=74 " + "AND  entity_id='d37982b0-c220-11eb-a61d-e9bafc595a10' ORDER BY ts DESC LIMIT 1"
@@ -147,7 +153,7 @@ token_totales='X6R56MUqQl'
 
 wb = load_workbook(file)
 wb.iso_dates = True
-sheet = wb['||||Hoja111']
+sheet = wb['Hoja1']
 
 Columna=1
 

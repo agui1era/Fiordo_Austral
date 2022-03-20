@@ -1,1 +1,1 @@
- C:\Users\matias.valdes\AppData\Local\Programs\Python\Python39\python.exe C:\Users\matias.valdes\Documents\GitHub\Fiordo_Austral\uploadFTP.py
+ C:\Users\icriomi\AppData\Local\Programs\Python\Python310\python.exe C:\Users\icriomi\Desktop\Fiordo_Austral-main\uploadFTP.py
