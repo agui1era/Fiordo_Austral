@@ -6,7 +6,7 @@ FTP_HOST = "igromi.com"
 FTP_USER = "igromi"
 FTP_PASS = "diccionarioAvanza12"
 
-folder_path =r"C:\Users\Desktop\Desktop\Fiordo_Austral"
+folder_path =r"C:\Users\icriomi\Desktop\TELEMETRIA-EXCEL"
 
 ffolder_path = r'path where your files are located'
 file_type = r'\*.xlsx'
