@@ -8,7 +8,7 @@ import smtplib
 from email import encoders 
 
 emails=["aguileraelectro@gmail.com","barbara@igromi.com","victor.ruz@igromi.com"]
-horas_alarma=24
+horas_alarma=6
 
 fromaddr = "news@igromi.cl"
 msg = MIMEMultipart() 
