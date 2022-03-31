@@ -44,11 +44,24 @@ def date_to_milis(date_string):
     return str(math.trunc(obj_date.timestamp() * 1000))
 
 
-for i in range(7,13):
+for i in range(2,13):
 
     date_now = datetime.datetime.now()
-    str_date_now=date_now.strftime("30/"+str(i)+"/%Y 23:59:59")
-    str_date_ant=date_now.strftime("30/"+str(i-1)+"/%Y 23:59:59")
+
+    if i == 2:
+        
+        str_date_now=date_now.strftime("28/"+str(i)+"/%Y 23:59:59")
+        str_date_ant=date_now.strftime("30/"+str(i-1)+"/%Y 23:59:59")
+    if i == 3:
+        
+        str_date_now=date_now.strftime("30/"+str(i)+"/%Y 23:59:59")
+        str_date_ant=date_now.strftime("28/"+str(i-1)+"/%Y 23:59:59")
+  
+    if i > 3:
+   
+        str_date_now=date_now.strftime("30/"+str(i)+"/%Y 23:59:59")
+        str_date_ant=date_now.strftime("30/"+str(i-1)+"/%Y 23:59:59")
+
     print("Mes número: "+str(i))
     print("Día final: "+str_date_now)
     print("Día inicial: "+str_date_ant)
