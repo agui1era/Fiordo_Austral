@@ -76,7 +76,7 @@ result_det=str(getDB(sql_str_det))
 print(result_det)
 
 
-if (1):
+if (result_det=='ERROR'):
 
   ################  Envio de mail ###################
   # attach the body with the msg instance 
