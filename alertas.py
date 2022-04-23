@@ -21,7 +21,7 @@ s = smtplib.SMTP("mail.igromi.cl", 587)
 # start TLS for security 
 s.starttls() 
 # Authentication 
-s.login(fromaddr, "1466PIXVPL76")
+s.login(fromaddr, "imagina12$")
 
 sensorName="Totales_fiordo_austral"
 
