@@ -5,7 +5,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText 
 from email.mime.base import MIMEBase
 import smtplib
-from email import encoders 
+from email import encoders
+from pushbullet import Pushbullet
 
 emails=["aguileraelectro@gmail.com","barbara@igromi.com","victor.ruz@igromi.com"]
 horas_alarma=12
@@ -91,5 +92,8 @@ if (result_det=='ERROR'):
     # sending the mail 
 
   for email in emails :
+
+    pb = Pushbullet('o.i9959mzkwsEWPz7gmOa13jmK9J1fpd9E')
+    push = pb.push_note('Alerta','Problema con carga de planilla Fiordo Austral')
     msg["To"] = email,
     s.sendmail(fromaddr,email, text)
