@@ -91,9 +91,10 @@ if (result_det=='ERROR'):
   text = msg.as_string() 
     # sending the mail 
 
-  for email in emails :
 
-    pb = Pushbullet('o.i9959mzkwsEWPz7gmOa13jmK9J1fpd9E')
-    push = pb.push_note('Alerta','Problema con carga de planilla Fiordo Austral')
+pb = Pushbullet('o.i9959mzkwsEWPz7gmOa13jmK9J1fpd9E')
+push = pb.push_note('Alerta','Problema con carga de planilla Fiordo Austral')
+
+for email in emails :
     msg["To"] = email,
     s.sendmail(fromaddr,email, text)
