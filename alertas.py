@@ -9,7 +9,7 @@ from email import encoders
 from pushbullet import Pushbullet
 
 emails=["aguileraelectro@gmail.com","barbara@igromi.com","victor.ruz@igromi.com"]
-horas_alarma=12
+horas_alarma=72
 
 fromaddr = "news@igromi.cl"
 msg = MIMEMultipart() 
